@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/team-angular",
             "index": "src/index.html",
-            "main": "src/main.single-spa.ts",
+            "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
