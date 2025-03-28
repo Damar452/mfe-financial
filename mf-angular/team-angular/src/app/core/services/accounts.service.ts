@@ -10,8 +10,8 @@ export class AccountsService {
 
   constructor(private _http: HttpClient) { }
 
-    public getAccounts(): Observable<any>{
-     return this._http.get<any>(`${environment.API}/accounts`);
+    public getAccounts(userId: number): Observable<any>{
+     return this._http.get<any>(`${environment.API}/accounts?userId=${userId}`);
     }
 
     public createAccount(payload:any): Observable<any>{

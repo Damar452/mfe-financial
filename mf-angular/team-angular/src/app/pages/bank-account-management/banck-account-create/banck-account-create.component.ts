@@ -28,8 +28,17 @@ export class BanckAccountCreateComponent implements OnInit {
     this.buildForm();
   }
 
+  getIdUserLocalStorage() {
+    const userData = localStorage.getItem("USER_DATA");
+    return userData ? JSON.parse(userData).id : null;
+  }
+
   private buildForm(): void {
     this.accountForm = this.fb.group({
+      userId: [
+        this.selectedAccount?.userId || this.getIdUserLocalStorage(),
+        Validators.required,
+      ],
       accountNumber: [
         this.selectedAccount?.accountNumber || '',
         Validators.required,
@@ -42,6 +51,9 @@ export class BanckAccountCreateComponent implements OnInit {
         this.selectedAccount?.balance || 0,
         [Validators.required, Validators.min(0)],
       ],
+      createdAt: [
+         this.selectedAccount?.createdAt || new Date(),
+        [Validators.required]]
     });
   }
 

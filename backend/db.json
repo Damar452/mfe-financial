@@ -145,6 +145,14 @@
       "accountType": "CHECKING",
       "balance": 60000,
       "id": 1020
+    },
+    {
+      "userId": 1,
+      "accountNumber": "ACC-001-0003",
+      "accountType": "SAVINGS",
+      "balance": 20000,
+      "createdAt": "2025-03-28T23:36:34.923Z",
+      "id": 1021
     }
   ],
   "transactions": [
