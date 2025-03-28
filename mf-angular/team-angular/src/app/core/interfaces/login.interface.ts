@@ -1,6 +1,6 @@
 export interface LoginRequest {
   email: string;
-  pawwsord: string;
+  password: string;
 }
 
 export interface LoginResponse {
