@@ -35,6 +35,7 @@ npm run install:all
 Si prefieres instalar cada módulo individualmente, usa:
 ```sh
 npm run install:root   # Instala dependencias del root
+npm run install:backend   # Instala dependencias del server de backend
 npm run install:angular  # Instala dependencias del micro frontend Angular
 npm run install:react  # Instala dependencias del micro frontend React
 ```
@@ -50,6 +51,7 @@ npm run start:all
 
 ### 🔹 Levantar cada servicio por separado
 ```sh
+npm run start:backend    # Inicia el servidor de backend
 npm run start:root    # Inicia el servidor principal
 npm run start:angular  # Inicia el micro frontend Angular
 npm run start:react  # Inicia el micro frontend React
@@ -58,6 +60,11 @@ npm run start:react  # Inicia el micro frontend React
 **Si prefieres instalar las dependencias de cada aplicación usando sus propios comandos:**
 - **Iniciar servidor raíz:**
   ```sh
+  npm run start
+  ```
+- **Iniciar Backend:**
+  ```sh
+  cd backend
   npm run start
   ```
 - **Iniciar Angular:**
@@ -72,6 +79,7 @@ npm run start:react  # Inicia el micro frontend React
   ```
   
 ### 🔹 Puertos por cada MFE
+- **Backend:** [http://localhost:3000](http://localhost:3000)
 - **Root:** [http://localhost:9000](http://localhost:9000)
 - **Angular:** [http://localhost:4200](http://localhost:4200)
 - **React:** [http://localhost:8080](http://localhost:8080)
