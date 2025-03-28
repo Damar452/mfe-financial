@@ -19,11 +19,10 @@ export class DashboardComponent {
     { id: 2, nombre: 'Cuenta Corriente', saldo: 100000 }
   ];
 
-  cuentaSeleccionada: number | null = null;
+  cuentaSeleccionada: any = null;
 
-  getSaldoCuenta(id: number) {
-    const cuenta = this.cuentas.find(c => c.id === id);
-    return cuenta ? cuenta.saldo : 0;
+  verCuenta(cuenta: any) {
+    this.cuentaSeleccionada = cuenta;
   }
 
 }

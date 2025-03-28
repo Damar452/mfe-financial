@@ -1,37 +1,67 @@
-<div class="container">
-  <mat-card class="saldo-card">
-    <mat-card-title>Saldo Total</mat-card-title>
-    <mat-card-content>
-      <h2>{{ saldoTotal | currency }}</h2>
-    </mat-card-content>
-  </mat-card>
+<div class="container mt-4">
+  <!-- Título -->
+  <h2 class="mb-3">Dashboard</h2>
 
-  <mat-card class="transacciones-card">
-    <mat-card-title>Últimas Transacciones</mat-card-title>
-    <mat-list>
-      <mat-list-item *ngFor="let transaccion of transacciones">
-        <span>{{ transaccion.descripcion }}</span>
-        <span class="monto" [ngClass]="{ 'positivo': transaccion.monto > 0, 'negativo': transaccion.monto < 0 }">
-          {{ transaccion.monto | currency }}
-        </span>
-      </mat-list-item>
-    </mat-list>
-  </mat-card>
-
-  <mat-card class="cuentas-card">
-    <mat-card-title>Seleccionar Cuenta</mat-card-title>
-    <mat-form-field appearance="outline">
-      <mat-label>Cuenta</mat-label>
-      <mat-select [(value)]="cuentaSeleccionada">
-        <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.id">
-          {{ cuenta.nombre }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <div *ngIf="cuentaSeleccionada">
-      <p><strong>Saldo:</strong> {{ getSaldoCuenta(cuentaSeleccionada) | currency }}</p>
+  <!-- Saldo Total -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm text-center">
+        <div class="card-header bg-light">Saldo Total</div>
+        <div class="card-body">
+          <h2>{{ saldoTotal | currency }}</h2>
+        </div>
+      </div>
     </div>
-  </mat-card>
-</div>
+  </div>
 
+  <!-- Últimas Transacciones y Cuentas -->
+  <div class="row mt-4">
+    <!-- Últimas Transacciones -->
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">Últimas Transacciones</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between" *ngFor="let transaccion of transacciones">
+            <span>{{ transaccion.descripcion }}</span>
+            <span [class.text-success]="transaccion.monto > 0" [class.text-danger]="transaccion.monto < 0">
+              {{ transaccion.monto | currency }}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tabla de Cuentas -->
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">Cuentas</div>
+        <div class="card-body">
+          <table class="table table-striped text-center">
+            <thead class="table-light">
+              <tr>
+                <th>Cuenta</th>
+                <th>Saldo</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cuenta of cuentas">
+                <td>{{ cuenta.nombre }}</td>
+                <td>{{ cuenta.saldo | currency }}</td>
+                <td>
+                  <button class="btn btn-primary btn-sm" (click)="verCuenta(cuenta)">Ver</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Información de la cuenta seleccionada -->
+          <div *ngIf="cuentaSeleccionada" class="alert alert-info mt-3">
+            <strong>Cuenta seleccionada:</strong> {{ cuentaSeleccionada.nombre }} <br>
+            <strong>Saldo:</strong> {{ cuentaSeleccionada.saldo | currency }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
