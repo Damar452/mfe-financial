@@ -1,10 +1,17 @@
 {
   "extends": "ts-config-single-spa",
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "moduleResolution": "node",
+    "esModuleInterop": true, // Permite importar módulos CommonJS
+    "strict": true,
     "jsx": "react-jsx",
     "declarationDir": "dist"
   },
   "files": ["src/team-react-mf-react.tsx"],
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test*"]
+  "exclude": ["src/**/*.test*", "dist", "**/*.test.tsx", "**/*.spec.tsx"]
 }

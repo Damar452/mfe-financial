@@ -1,0 +1,34 @@
+.ant-table {
+    background-color: var(--primary-50) !important;
+    border-radius: 8px;
+}
+
+/* Estilos para el encabezado de la tabla */
+.ant-table-thead > tr > th {
+    background-color: var(--white) !important;
+    color: var(--primary-400) !important;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Estilos para las filas del cuerpo de la tabla */
+.ant-table-tbody > tr {
+    background-color: var(--white) !important;
+    color: var(--dark-500) !important;
+}
+
+/* Alternar color de filas */
+.ant-table-tbody > tr:nth-child(odd) {
+    background-color: var(--dark-50) !important;
+}
+
+/* Hover en filas */
+.ant-table-tbody > tr:hover {
+    background-color: var(--primary-50) !important;
+}
+
+/* Bordes */
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+    border-color: transparent !important;
+}
