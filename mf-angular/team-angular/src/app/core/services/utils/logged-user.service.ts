@@ -10,7 +10,7 @@ export class LoggedUserService {
   constructor() { }
 
   public saveLoggedUser(data: any) {
-    window.localStorage.setItem(this.storageKey, data);
+    window.localStorage.setItem(this.storageKey, JSON.stringify(data));
   }
 
   public getLoggedUser(): any {
