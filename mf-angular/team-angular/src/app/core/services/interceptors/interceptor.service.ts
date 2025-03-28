@@ -6,18 +6,19 @@ import {
   HttpEvent,
   HttpErrorResponse
 } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, Observable, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { LoggedUserService } from '../utils/logged-user.service';
+import { LoadingService } from '../utils/loading.service';
 
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
 
   private countRequest = 0;
-  private isModalOpen = new BehaviorSubject<boolean>(false);
 
   constructor(
     private loggedUserService: LoggedUserService,
+    private loadingService: LoadingService
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -27,19 +28,15 @@ export class InterceptorService implements HttpInterceptor {
     const token = this.loggedUserService.getLoggedUser()?.token || null;
 
     if (!noAuthorizationEndpoints) {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-
       request = request.clone({
-        setHeaders: headers
+        setHeaders: { Authorization: `Bearer ${token}` }
       });
     }
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log(error)
-        return throwError(error);
+        console.error('HTTP Error:', error);
+        return throwError(() => error);
       }),
       finalize(() => {
         this.hideLoading();
@@ -48,17 +45,16 @@ export class InterceptorService implements HttpInterceptor {
   }
 
   private showLoading() {
-    // if (this.countRequest === 0) {
-    //   this.loadingService.show();
-    // }
-    // this.countRequest++;
+    if (this.countRequest === 0) {
+      this.loadingService.show();
+    }
+    this.countRequest++;
   }
 
   private hideLoading() {
-    // this.countRequest--;
-    // if (this.countRequest === 0) {
-    //   this.loadingService.hide();
-    // }
+    this.countRequest--;
+    if (this.countRequest === 0) {
+      this.loadingService.hide();
+    }
   }
-
 }
