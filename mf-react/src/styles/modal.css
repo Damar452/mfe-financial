@@ -1,0 +1,18 @@
+.ant-modal-content {
+    background-color: var(--dark-50) !important;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.ant-modal-title {
+    color: var(--primary-400) !important;
+    font-weight: bold;
+}
+
+.ant-modal-footer {
+    border-top: 1px solid var(--dark-200) !important;
+}
+
+.ant-modal-close-x {
+    color: var(--dark-500) !important;
+}
