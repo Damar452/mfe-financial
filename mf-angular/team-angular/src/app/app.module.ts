@@ -9,12 +9,25 @@ import { BankAccountManagementComponent } from './pages/bank-account-management/
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './core/services/interceptors/interceptor.service';
 import { TransactionHistoryComponent } from './pages/transaction-history/transaction-history.component';
-
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import { BanckAccountCreateComponent } from './pages/bank-account-management/banck-account-create/banck-account-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './pages/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     BankAccountManagementComponent,
-    TransactionHistoryComponent
+    TransactionHistoryComponent,
+    BanckAccountCreateComponent,
+    DashboardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +35,17 @@ import { TransactionHistoryComponent } from './pages/transaction-history/transac
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
-    HttpClientModule
+    MatCardModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    HttpClientModule,
+    MatSidenavModule,
+    MatListModule,
+    MatListModule,
+    MatIconModule,
+    MatTableModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

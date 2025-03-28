@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+mat-card {
+  padding: 16px;
+}
+
+.saldo-card {
+  background: #e3f2fd;
+  text-align: center;
+}
+
+.transacciones-card mat-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.monto {
+  font-weight: bold;
+}
+
+.positivo {
+  color: green;
+}
+
+.negativo {
+  color: red;
+}

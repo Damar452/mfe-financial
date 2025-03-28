@@ -110,5 +110,12 @@ npm run start:react  # Inicia el micro frontend React
 - Este proyecto usa **Single SPA** para la integración de micro frontends.
 - Asegúrate de que todos los servicios estén corriendo correctamente antes de probar la aplicación en el navegador.
 
+
+📌 **Datos de prueba para iniciar sesión:** 
+
+- **Email:** john.doe@example.com
+- **password:** password123
+
+
 📌 ¡Listo! Ahora puedes comenzar a trabajar en tu proyecto 🎉
 
