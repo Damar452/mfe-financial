@@ -6,15 +6,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body p-4">
-        <form [formGroup]="accountForm" (ngSubmit)="createAccount()">
+        <form [formGroup]="accountForm">
           <div class="mb-3">
             <label class="form-label">Número de Cuenta</label>
-            <input type="text" class="form-control" formControlName="accountNumber">
+            <input [readonly]="selectedAccount" type="text" class="form-control" formControlName="accountNumber">
           </div>
 
           <div class="mb-3">
             <label class="form-label">Tipo de Cuenta</label>
-            <select class="form-select" formControlName="accountType">
+            <select  class="form-select" formControlName="accountType">
               <option value="">Seleccione</option>
               <option value="SAVINGS">Ahorros</option>
               <option value="CHECKING">Corriente</option>
@@ -24,18 +24,17 @@
 
           <div class="mb-5">
             <label class="form-label">Saldo Inicial</label>
-            <input type="number" class="form-control" formControlName="balance">
+            <input [readonly]="selectedAccount" type="number" class="form-control" formControlName="balance">
           </div>
 
           <div class="d-flex gap-3 mt-4">
             <button class="btn btn-light w-100" data-bs-dismiss="modal" aria-label="Cerrar">
               Cancelar
             </button>
-            <button type="submit" class="btn btn-primary w-100" [disabled]="accountForm.invalid">
+            <button *ngIf="!selectedAccount" (click)="createAccount()" class="btn btn-primary w-100" [disabled]="accountForm.invalid">
               Crear Cuenta
             </button>
           </div>
-
         </form>
       </div>
     </div>

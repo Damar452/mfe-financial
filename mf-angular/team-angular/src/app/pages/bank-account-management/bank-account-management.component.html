@@ -1,8 +1,8 @@
 <div>
-  <h1>Cuentas Asociadas</h1>
+  <h2 class="mb-2">Cuentas Asociadas</h2>
   <div class="card py-3 px-4">
     <div class="d-flex justify-content-end">
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAccountModal">Agregar Cuenta</button>
+      <button (click)="openCreateModal()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAccountModal">Agregar Cuenta</button>
     </div>
 
     <div class="table-responsive">
@@ -21,7 +21,7 @@
         <td>{{ account.accountType }}</td>
         <td>{{ account.balance | currency }}</td>
         <td>
-          <button class="btn btn-primary btn-sm me-2">Ver</button>
+          <button (click)="viewAcount(account)" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#createAccountModal">Ver</button>
         </td>
       </tr>
     </tbody>
@@ -31,4 +31,7 @@
   </div>
 
 </div>
-<app-banck-account-create></app-banck-account-create>
+
+
+  <app-banck-account-create [selectedAccount]="selectedAccount" ></app-banck-account-create>
+
