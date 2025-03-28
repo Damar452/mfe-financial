@@ -10,11 +10,11 @@ export class AccountsService {
 
   constructor(private _http: HttpClient) { }
 
-    public getAccounts(): Observable<any>{
-     return this._http.get<any>(`${environment.API}/accounts`);
-    }
+  public getAccounts(): Observable<any> {
+    return this._http.get<any>(`${environment.API}/accounts`);
+  }
 
-    public createAccount(payload:any): Observable<any>{
-      return this._http.post<any>(`${environment.API}/accounts`, payload);
-     }
+  public createAccount(payload: any): Observable<any> {
+    return this._http.post<any>(`${environment.API}/accounts`, payload);
+  }
 }

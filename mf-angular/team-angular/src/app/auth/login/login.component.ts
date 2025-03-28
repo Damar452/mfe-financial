@@ -27,14 +27,7 @@ export class LoginComponent implements OnInit {
     this.buildForm();
   }
 
-  buildForm() {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
-  }
-
-  onSubmit() {
+  public onSubmit() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response: LoginResponse) => {
@@ -46,5 +39,12 @@ export class LoginComponent implements OnInit {
         }
       })
     }
+  }
+
+  private buildForm() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 }
