@@ -10,16 +10,16 @@ export const HomeRouting: Routes = [
     component: HomeComponent,
     children: [
       {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
         path: 'bank-account-management',
         component: BankAccountManagementComponent
       },
       {
         path: 'transaction-history',
         component: TransactionHistoryComponent
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent
       }
     ]
   },

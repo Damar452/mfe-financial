@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response: LoginResponse) => {
           this.loggedUserService.saveLoggedUser(response);
-          this.router.navigate(['bank-account-management']);
+          this.router.navigate(['dashboard']);
         },
         error: (error) => {
           this.snackbarService.showErrorSnackbar('Email o contraseña inválido!');
