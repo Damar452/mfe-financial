@@ -1,7 +1,6 @@
 const path = require("path");
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
-
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "team-react",
@@ -13,17 +12,17 @@ module.exports = (webpackConfigEnv, argv) => {
   return merge(defaultConfig, {
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'), // Alias para la carpeta src
+        "@": path.resolve(__dirname, "src"), // Alias para la carpeta src
       },
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'], // Extensiones soportadas
+      extensions: [".js", ".jsx", ".ts", ".tsx", ".json"], // Extensiones soportadas
     },
     module: {
       rules: [
         {
           test: /\.(js|jsx|ts|tsx)$/,
-          exclude: /node_modules/,
+          exclude: /(node_modules|\.test\.tsx?$|\.spec\.tsx?$|__tests__)/, // Excluir archivos de prueba
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
               presets: [
                 "@babel/preset-env",

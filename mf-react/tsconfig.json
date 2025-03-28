@@ -13,5 +13,5 @@
   },
   "files": ["src/team-react-mf-react.tsx"],
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test*"]
+  "exclude": ["src/**/*.test*", "dist", "**/*.test.tsx", "**/*.spec.tsx"]
 }

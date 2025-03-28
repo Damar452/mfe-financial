@@ -20,6 +20,14 @@ const transactions = [
     type: "Gasto",
     details: "Pago de servicio de hosting",
   },
+  {
+    key: "3",
+    account: "Cuenta C",
+    amount: "$800",
+    date: "2025-03-30 05:30 PM",
+    type: "Gasto",
+    details: "Pago de renta",
+  },
 ];
 
 export default function TransactionHistory() {
@@ -43,7 +51,7 @@ export default function TransactionHistory() {
       title: "Acciones",
       key: "actions",
       render: (_: any, record: any) => (
-        <Button onClick={() => setSelectedTransaction(record)}>Ver Detalles</Button>
+        <Button type="primary" onClick={() => setSelectedTransaction(record)}>Ver Detalles</Button>
       ),
     },
   ];

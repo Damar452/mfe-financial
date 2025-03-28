@@ -3,8 +3,7 @@ import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";
 import Root from "./root.component";
 import "antd/dist/antd.css";
-import "./styles/global.css"; // Importar estilos globales
-
+import "./styles/theme.css"; // Mantén los estilos globales
 
 const lifecycles = singleSpaReact({
   React,
