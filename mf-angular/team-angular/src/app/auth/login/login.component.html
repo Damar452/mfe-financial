@@ -1,30 +1,27 @@
-<div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-title class="login-card-title">Iniciar Sesión</mat-card-title>
-    <mat-card-subtitle class="login-card-title">Inicia sesión y gestiona tus cuentas</mat-card-subtitle>
-    <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" required>
-          <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-            Ingrese un correo válido
-          </mat-error>
-        </mat-form-field>
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light-pink">
+  <div class="card p-4 shadow" style="width: 400px;">
+    <h4 class="text-center mb-3">Iniciar Sesión</h4>
+    <h6 class="text-center text-muted mb-4">Inicia sesión y gestiona tus cuentas</h6>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" required>
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+          Ingrese un correo válido
+        </div>
+      </div>
 
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Contraseña</mat-label>
-          <input matInput type="password" formControlName="password" required>
-          <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-            La contraseña es obligatoria
-          </mat-error>
-        </mat-form-field>
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control" formControlName="password" required>
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+          La contraseña es obligatoria
+        </div>
+      </div>
 
-        <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="loginForm.invalid">
-          Ingresar
-        </button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+      <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">
+        Ingresar
+      </button>
+    </form>
+  </div>
 </div>
-
