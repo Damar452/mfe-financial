@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { BankAccountManagementComponent } from './pages/bank-account-management/bank-account-management.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { InterceptorService } from './core/services/interceptors/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,12 @@ import { BankAccountManagementComponent } from './pages/bank-account-management/
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
