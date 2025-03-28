@@ -1,0 +1,37 @@
+<div class="container">
+  <mat-card class="saldo-card">
+    <mat-card-title>Saldo Total</mat-card-title>
+    <mat-card-content>
+      <h2>{{ saldoTotal | currency }}</h2>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="transacciones-card">
+    <mat-card-title>Últimas Transacciones</mat-card-title>
+    <mat-list>
+      <mat-list-item *ngFor="let transaccion of transacciones">
+        <span>{{ transaccion.descripcion }}</span>
+        <span class="monto" [ngClass]="{ 'positivo': transaccion.monto > 0, 'negativo': transaccion.monto < 0 }">
+          {{ transaccion.monto | currency }}
+        </span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+
+  <mat-card class="cuentas-card">
+    <mat-card-title>Seleccionar Cuenta</mat-card-title>
+    <mat-form-field appearance="outline">
+      <mat-label>Cuenta</mat-label>
+      <mat-select [(value)]="cuentaSeleccionada">
+        <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.id">
+          {{ cuenta.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="cuentaSeleccionada">
+      <p><strong>Saldo:</strong> {{ getSaldoCuenta(cuentaSeleccionada) | currency }}</p>
+    </div>
+  </mat-card>
+</div>
+
