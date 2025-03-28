@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountResponse } from 'src/app/core/interfaces/account.interface';
 import { AccountsService } from 'src/app/core/services/accounts.service';
@@ -7,6 +7,7 @@ import { AccountsService } from 'src/app/core/services/accounts.service';
   selector: 'app-banck-account-create',
   templateUrl: './banck-account-create.component.html',
   styleUrls: ['./banck-account-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BanckAccountCreateComponent implements OnInit {
   @Input() selectedAccount: AccountResponse | null = null;
@@ -19,7 +20,6 @@ export class BanckAccountCreateComponent implements OnInit {
   ) {}
 
   ngOnChanges(change: any) {
-    console.log(change);
     this.selectedAccount = change.selectedAccount.currentValue;
     this.buildForm();
   }

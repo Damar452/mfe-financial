@@ -133,6 +133,18 @@
       "accountType": "SAVINGS",
       "balance": 4900,
       "id": 1018
+    },
+    {
+      "accountNumber": "ACC-001-0007",
+      "accountType": "SAVINGS",
+      "balance": 2133,
+      "id": 1019
+    },
+    {
+      "accountNumber": "ACC-001-0008",
+      "accountType": "CHECKING",
+      "balance": 60000,
+      "id": 1020
     }
   ],
   "transactions": [
