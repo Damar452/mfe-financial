@@ -14,7 +14,7 @@ const router = jsonServer.router(path.join(__dirname, 'db.json'));
 const middlewares = jsonServer.defaults();
 
 const SECRET_KEY = 'oz#b@tqhQ56x)XjEdd8xM]c8*5&rB8';
-const EXPIRES_IN = '1h';
+const EXPIRES_IN = '9h';
 
 server.use(cors());
 server.use(middlewares);

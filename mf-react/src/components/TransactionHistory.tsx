@@ -1,38 +1,28 @@
-import React, { useState } from "react";
-import { Table, Select, Card, Modal, Button } from "antd";
+import React, { useEffect, useState } from "react";
+import { Table, Select, Card, Modal, Button, Spin } from "antd";
+import { fetchTransaction } from "../core/services/bussiness/transactionService";
 
 const { Option } = Select;
 
-const transactions = [
-  {
-    key: "1",
-    account: "Cuenta A",
-    amount: "$500",
-    date: "2025-03-28 10:00 AM",
-    type: "Ingreso",
-    details: "Pago recibido de Cliente X",
-  },
-  {
-    key: "2",
-    account: "Cuenta B",
-    amount: "$200",
-    date: "2025-03-27 03:30 PM",
-    type: "Gasto",
-    details: "Pago de servicio de hosting",
-  },
-  {
-    key: "3",
-    account: "Cuenta C",
-    amount: "$800",
-    date: "2025-03-30 05:30 PM",
-    type: "Gasto",
-    details: "Pago de renta",
-  },
-];
-
 export default function TransactionHistory() {
+  const [transactions, setTransactions] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [filteredType, setFilteredType] = useState<string | null>(null);
   const [selectedTransaction, setSelectedTransaction] = useState<any | null>(null);
+
+  useEffect(() => {
+    async function loadTransaction() {
+      setLoading(true);
+      const transaction = await fetchTransaction(1); // Se obtiene la transacción con ID 1
+      console.log(transaction);
+      if (transaction) {
+        setTransactions([transaction]); // Lo guardamos en un array
+      }
+      setLoading(false);
+    }
+
+    loadTransaction();
+  }, []);
 
   const handleTypeFilter = (value: string) => {
     setFilteredType(value);
@@ -43,15 +33,19 @@ export default function TransactionHistory() {
   );
 
   const columns = [
-    { title: "Cuenta", dataIndex: "account", key: "account" },
+    { title: "ID", dataIndex: "id", key: "id" },
+    { title: "Cuenta Origen", dataIndex: "sourceAccountId", key: "sourceAccountId" },
+    { title: "Cuenta Destino", dataIndex: "destinationAccountId", key: "destinationAccountId" },
     { title: "Monto", dataIndex: "amount", key: "amount" },
-    { title: "Fecha y Hora", dataIndex: "date", key: "date" },
+    { title: "Fecha y Hora", dataIndex: "timestamp", key: "timestamp" },
     { title: "Tipo", dataIndex: "type", key: "type" },
     {
       title: "Acciones",
       key: "actions",
       render: (_: any, record: any) => (
-        <Button type="primary" onClick={() => setSelectedTransaction(record)}>Ver Detalles</Button>
+        <Button type="primary" onClick={() => setSelectedTransaction(record)}>
+          Ver Detalles
+        </Button>
       ),
     },
   ];
@@ -59,16 +53,23 @@ export default function TransactionHistory() {
   return (
     <div style={{ padding: 20 }}>
       <h2>Historial de Transacciones</h2>
-      <Select
-        placeholder="Filtrar por tipo"
-        style={{ width: 200, marginBottom: 16 }}
-        onChange={handleTypeFilter}
-        allowClear
-      >
-        <Option value="Ingreso">Ingreso</Option>
-        <Option value="Gasto">Gasto</Option>
-      </Select>
-      <Table columns={columns} dataSource={filteredTransactions} />
+
+      {loading ? (
+        <Spin size="large" />
+      ) : (
+        <>
+          <Select
+            placeholder="Filtrar por tipo"
+            style={{ width: 200, marginBottom: 16 }}
+            onChange={handleTypeFilter}
+            allowClear
+          >
+            <Option value="TRANSFER">Transferencia</Option>
+          </Select>
+
+          <Table columns={columns} dataSource={filteredTransactions} rowKey="id" />
+        </>
+      )}
 
       <Modal
         title="Detalles de la Transacción"
@@ -78,11 +79,13 @@ export default function TransactionHistory() {
       >
         {selectedTransaction && (
           <Card>
-            <p><strong>Cuenta:</strong> {selectedTransaction.account}</p>
-            <p><strong>Monto:</strong> {selectedTransaction.amount}</p>
-            <p><strong>Fecha y Hora:</strong> {selectedTransaction.date}</p>
+            <p><strong>ID:</strong> {selectedTransaction.id}</p>
+            <p><strong>Cuenta Origen:</strong> {selectedTransaction.sourceAccountId}</p>
+            <p><strong>Cuenta Destino:</strong> {selectedTransaction.destinationAccountId}</p>
+            <p><strong>Monto:</strong> ${selectedTransaction.amount}</p>
+            <p><strong>Fecha y Hora:</strong> {selectedTransaction.timestamp}</p>
             <p><strong>Tipo:</strong> {selectedTransaction.type}</p>
-            <p><strong>Detalles:</strong> {selectedTransaction.details}</p>
+            <p><strong>Descripción:</strong> {selectedTransaction.description}</p>
           </Card>
         )}
       </Modal>
