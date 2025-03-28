@@ -1,6 +1,7 @@
 const path = require("path");
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
+const { library } = require("webpack");
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "team-react",
@@ -10,6 +11,9 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
+    output: {
+      libraryTarget: "system"
+    },
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "src"), // Alias para la carpeta src

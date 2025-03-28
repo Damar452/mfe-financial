@@ -52,8 +52,6 @@ export default function TransactionHistory() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h2>Historial de Transacciones</h2>
-
       {loading ? (
         <Spin size="large" />
       ) : (

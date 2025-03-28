@@ -14,7 +14,6 @@ export default function Root({ name }: RootProps) {
   return (
     <ConfigProvider>
       <Router>
-        <Navbar />
         <div style={{ padding: 20 }}>
           <Switch>
             <Route exact path="/">
