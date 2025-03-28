@@ -1,6 +1,13 @@
 {
   "extends": "ts-config-single-spa",
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "moduleResolution": "node",
+    "esModuleInterop": true, // Permite importar módulos CommonJS
+    "strict": true,
     "jsx": "react-jsx",
     "declarationDir": "dist"
   },
