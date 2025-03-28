@@ -10,10 +10,14 @@
     "build": "concurrently npm:build:*",
     "build:webpack": "webpack --mode=production",
     "build:types": "tsc",
+    "install:angular": "cd mf-angular/team-angular && npm i",
+    "install:react": "cd mf-react && npm i",
+    "install:root": "npm i",
+    "install:all": "npm run install:root && npm-run-all --serial install:angular install:react",
     "start:angular": "cd mf-angular/team-angular && npm run start:spa",
     "start:react": "cd mf-react && npm run start",
     "start:root": "npm run start",
-    "start:all": "npm-run-all --parallel start:angular start:react start:root"
+    "start:all": "npm-run-all --parallel start:angular start:react start"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
