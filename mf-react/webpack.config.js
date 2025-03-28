@@ -1,3 +1,4 @@
+const path = require("path");
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 
@@ -10,6 +11,49 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
-    // modify the webpack config however you'd like to by adding to this object
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'), // Alias para la carpeta src
+      },
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'], // Extensiones soportadas
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(js|jsx|ts|tsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                "@babel/preset-env",
+                [
+                  "@babel/preset-react",
+                  {
+                    runtime: "classic", // Mantén el runtime clásico para React 17
+                  },
+                ],
+                "@babel/preset-typescript",
+              ],
+            },
+          },
+        },
+        {
+          test: /\.less$/,
+          use: [
+            "style-loader",
+            "css-loader",
+            {
+              loader: "less-loader",
+              options: {
+                lessOptions: {
+                  javascriptEnabled: true,
+                },
+              },
+            },
+          ],
+        },
+      ],
+    },
   });
 };
