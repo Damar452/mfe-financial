@@ -1,3 +1,8 @@
+@import "./table.css";
+@import "./modal.css";
+@import "./button.css";
+@import "./typography.css";
+
 :root {
     --primary-900: #330e3f;
     --primary-400: #661b7f;
@@ -28,8 +33,16 @@
     --error-700: #d01a1a;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--dark-50);
-    color: var(--dark-900);
+.ant-message-success {
+    background-color: var(--success-500) !important;
+    color: white !important;
+}
+
+.ant-message-warning {
+    background-color: var(--warning-500) !important;
+    color: black !important;
+}
+
+.ant-layout {
+    background-color: var(--dark-50) !important;
 }

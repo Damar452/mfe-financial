@@ -1,0 +1,27 @@
+.ant-table {
+    background-color: var(--primary-50) !important;
+    border-radius: 8px;
+}
+
+.ant-table-thead > tr > th {
+    background-color: var(--primary-300) !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.ant-table-tbody > tr {
+    background-color: var(--white) !important;
+}
+
+.ant-table-tbody > tr:nth-child(even) {
+    background-color: var(--primary-30) !important;
+}
+
+.ant-table-tbody > tr:hover {
+    background-color: var(--primary-100) !important;
+}
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+    border-color: var(--primary-200) !important;
+}
