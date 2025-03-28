@@ -9,19 +9,37 @@ export default function TransactionHistory() {
   const [loading, setLoading] = useState<boolean>(true);
   const [filteredType, setFilteredType] = useState<string | null>(null);
   const [selectedTransaction, setSelectedTransaction] = useState<any | null>(null);
+  const [user, setUser] = useState<any | null>(null);
 
   useEffect(() => {
-    async function loadTransaction() {
+    // Recuperar usuario del localStorage
+    const userDataString = localStorage.getItem("USER_DATA");
+    if (!userDataString) {
+      console.error("No hay usuario autenticado");
+      setLoading(false);
+      return;
+    }
+
+    const userData = JSON.parse(userDataString);
+    setUser(userData);
+
+    async function loadTransactions() {
+      if (!userData.id) return;
+
       setLoading(true);
-      const transaction = await fetchTransaction(1); // Se obtiene la transacción con ID 1
-      console.log(transaction);
+      const transaction = await fetchTransaction(userData.id);
       if (transaction) {
-        setTransactions([transaction]); // Lo guardamos en un array
+        // Identificar ingresos y gastos
+        const labeledTransactions = transaction.map((t: any) => ({
+          ...t,
+          category: t.destinationAccountId === userData.id ? "Ingreso" : "Gasto",
+        }));
+        setTransactions(labeledTransactions);
       }
       setLoading(false);
     }
 
-    loadTransaction();
+    loadTransactions();
   }, []);
 
   const handleTypeFilter = (value: string) => {
@@ -29,7 +47,7 @@ export default function TransactionHistory() {
   };
 
   const filteredTransactions = transactions.filter(
-    (t) => !filteredType || t.type === filteredType
+    (t) => !filteredType || t.category === filteredType
   );
 
   const columns = [
@@ -38,7 +56,7 @@ export default function TransactionHistory() {
     { title: "Cuenta Destino", dataIndex: "destinationAccountId", key: "destinationAccountId" },
     { title: "Monto", dataIndex: "amount", key: "amount" },
     { title: "Fecha y Hora", dataIndex: "timestamp", key: "timestamp" },
-    { title: "Tipo", dataIndex: "type", key: "type" },
+    { title: "Tipo", dataIndex: "category", key: "category" },
     {
       title: "Acciones",
       key: "actions",
@@ -62,7 +80,8 @@ export default function TransactionHistory() {
             onChange={handleTypeFilter}
             allowClear
           >
-            <Option value="TRANSFER">Transferencia</Option>
+            <Option value="Ingreso">Ingreso</Option>
+            <Option value="Gasto">Gasto</Option>
           </Select>
 
           <Table columns={columns} dataSource={filteredTransactions} rowKey="id" />
@@ -82,7 +101,7 @@ export default function TransactionHistory() {
             <p><strong>Cuenta Destino:</strong> {selectedTransaction.destinationAccountId}</p>
             <p><strong>Monto:</strong> ${selectedTransaction.amount}</p>
             <p><strong>Fecha y Hora:</strong> {selectedTransaction.timestamp}</p>
-            <p><strong>Tipo:</strong> {selectedTransaction.type}</p>
+            <p><strong>Tipo:</strong> {selectedTransaction.category}</p>
             <p><strong>Descripción:</strong> {selectedTransaction.description}</p>
           </Card>
         )}
