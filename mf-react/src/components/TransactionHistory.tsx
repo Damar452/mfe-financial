@@ -13,14 +13,14 @@ export default function TransactionHistory() {
 
   useEffect(() => {
     // Recuperar usuario del localStorage
-    const userDataString = localStorage.getItem("USER_DATA");
-    if (!userDataString) {
+    const userData = JSON.parse(window.localStorage.getItem('USER_DATA')!);
+
+    if (!userData) {
       console.error("No hay usuario autenticado");
       setLoading(false);
       return;
     }
 
-    const userData = JSON.parse(userDataString);
     setUser(userData);
 
     async function loadTransactions() {
@@ -28,12 +28,18 @@ export default function TransactionHistory() {
 
       setLoading(true);
       const transaction = await fetchTransaction(userData.id);
+
       if (transaction) {
+        // Validación para manejar un solo objeto o un array
+        // Si la API devuelve un solo objeto, lo convertimos en un array
+        const transactionArray = Array.isArray(transaction) ? transaction : [transaction];
+
         // Identificar ingresos y gastos
-        const labeledTransactions = transaction.map((t: any) => ({
+        const labeledTransactions = transactionArray.map((t: any) => ({
           ...t,
           category: t.destinationAccountId === userData.id ? "Ingreso" : "Gasto",
         }));
+
         setTransactions(labeledTransactions);
       }
       setLoading(false);
