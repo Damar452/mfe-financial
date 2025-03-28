@@ -60,7 +60,7 @@
     "@types/webpack-env": "^1.16.2",
     "antd": "^4.24.16",
     "react-router-dom": "^5.3.4",
-    "single-spa": "^5.9.3",
+    "single-spa": "^5.9.3"
   },
   "types": "dist/team-react-mf-react.d.ts"
 }
