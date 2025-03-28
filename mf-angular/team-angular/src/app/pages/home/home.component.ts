@@ -14,9 +14,8 @@ export class HomeComponent {
     private router: Router
   ) {}
 
-  logout() {
+  public logout() {
     this.loggedUserService.removeLoggedUser();
     this.router.navigate(['login']);
   }
-
 }

@@ -8,7 +8,7 @@ export class SnackbarService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  showErrorSnackbar(message: string) {
+  public showErrorSnackbar(message: string): void {
     this.snackBar.open(message, 'Cerrar', {
       duration: 5000,
       horizontalPosition: 'right',

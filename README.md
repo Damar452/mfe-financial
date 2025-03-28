@@ -77,6 +77,14 @@ npm run start:react  # Inicia el micro frontend React
   cd mf-react
   npm run start
   ```
+
+### 🔹 Script para pruebas unitarias en Angular
+  ```sh
+  cd mf-angular/team-angular
+  ng test
+  ```
+
+
   
 ### 🔹 Puertos por cada MFE
 - **Backend:** [http://localhost:3000](http://localhost:3000)

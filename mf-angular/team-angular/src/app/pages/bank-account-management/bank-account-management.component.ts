@@ -8,8 +8,9 @@ import { AccountsService } from 'src/app/core/services/accounts.service';
   styleUrls: ['./bank-account-management.component.scss'],
 })
 export class BankAccountManagementComponent implements OnInit {
-  accountsData!: AccountResponse[];
-  selectedAccount!: AccountResponse | null;
+
+  public accountsData!: AccountResponse[];
+  public selectedAccount!: AccountResponse | null;
 
   constructor(
     private accountsServices: AccountsService,
