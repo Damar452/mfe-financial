@@ -43,6 +43,30 @@
       "accountType": "SAVINGS",
       "balance": 980.25,
       "createdAt": "2025-03-12T09:30:00Z"
+    },
+    {
+      "accountNumber": "ACC-001-0003",
+      "accountType": "SAVINGS",
+      "balance": 200000,
+      "id": 1004
+    },
+    {
+      "accountNumber": "ACC-001-0003",
+      "accountType": "SAVINGS",
+      "balance": 200000,
+      "id": 1005
+    },
+    {
+      "accountNumber": "ACC-001-0003",
+      "accountType": "SAVINGS",
+      "balance": 200000,
+      "id": 1006
+    },
+    {
+      "accountNumber": "ACC-001-0004",
+      "accountType": "CHECKING",
+      "balance": 10000,
+      "id": 1007
     }
   ],
   "transactions": [

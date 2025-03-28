@@ -9,12 +9,20 @@ import { BankAccountManagementComponent } from './pages/bank-account-management/
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './core/services/interceptors/interceptor.service';
 import { TransactionHistoryComponent } from './pages/transaction-history/transaction-history.component';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import { BanckAccountCreateComponent } from './pages/bank-account-management/banck-account-create/banck-account-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './pages/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     BankAccountManagementComponent,
-    TransactionHistoryComponent
+    TransactionHistoryComponent,
+    BanckAccountCreateComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +30,13 @@ import { TransactionHistoryComponent } from './pages/transaction-history/transac
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatListModule,
+    MatListModule,
+    MatIconModule,
+    MatTableModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
