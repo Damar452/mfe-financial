@@ -1,1 +1,34 @@
-<p>bank-account-management works!</p>
+<div>
+  <h1>Cuentas Asociadas</h1>
+  <div class="card py-3 px-4">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAccountModal">Agregar Cuenta</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+    <thead >
+      <tr>
+        <th>N° Cuenta</th>
+        <th>Tipo de cuenta</th>
+        <th>Balance</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of accountsData">
+        <td>{{ account.accountNumber  }}</td>
+        <td>{{ account.accountType }}</td>
+        <td>{{ account.balance | currency }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-2">Ver</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+
+  </div>
+
+</div>
+<app-banck-account-create></app-banck-account-create>
