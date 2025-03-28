@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { BankAccountManagementComponent } from '../bank-account-management/bank-account-management.component';
 import { TransactionHistoryComponent } from '../transaction-history/transaction-history.component';
 import { HomeComponent } from './home.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 export const HomeRouting: Routes = [
   {
@@ -15,6 +16,10 @@ export const HomeRouting: Routes = [
       {
         path: 'transaction-history',
         component: TransactionHistoryComponent
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
       }
     ]
   },
