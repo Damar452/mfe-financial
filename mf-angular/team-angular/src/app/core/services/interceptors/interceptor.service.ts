@@ -24,7 +24,7 @@ export class InterceptorService implements HttpInterceptor {
     this.showLoading();
 
     const noAuthorizationEndpoints = ['/login'].some(endpoint => request.url.includes(endpoint));
-    const token = this.loggedUserService.getLoggedUser()?.data?.token || null;
+    const token = this.loggedUserService.getLoggedUser()?.token || null;
 
     if (!noAuthorizationEndpoints) {
       const headers = {
