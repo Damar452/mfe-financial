@@ -7,6 +7,7 @@ import { singleSpaAngular } from 'single-spa-angular';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import { singleSpaPropsSubject } from './single-spa/single-spa-props';
+import { RouterModule } from '@angular/router';
 
 if (environment.production) {
   enableProdMode();
@@ -18,6 +19,7 @@ const lifecycles = singleSpaAngular({
     return platformBrowserDynamic().bootstrapModule(AppModule);
   },
   template: '<app-root />',
+  Router: RouterModule,
   NgZone,
 });
 
