@@ -14,6 +14,11 @@ export class HomeComponent {
     private router: Router
   ) {}
 
+  get userName() {
+    const { firstName, lastName } = this.loggedUserService.getLoggedUser()!;
+    return `${firstName} ${lastName}`
+  }
+
   public logout() {
     this.loggedUserService.removeLoggedUser();
     this.router.navigate(['login']);
