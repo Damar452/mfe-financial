@@ -30,6 +30,11 @@ export class BankAccountManagementComponent implements OnInit {
     }
   }
 
+  private getIdUserLocalStorage() {
+    const userData = localStorage.getItem("USER_DATA");
+    return userData ? JSON.parse(userData).id : null;
+  }
+
   public viewAcount(account: any) {
     this.selectedAccount = account;
     this.cdr.detectChanges();
@@ -41,7 +46,7 @@ export class BankAccountManagementComponent implements OnInit {
   }
 
   private getAccounts(): void {
-    this.accountsServices.getAccounts().subscribe({
+    this.accountsServices.getAccounts(this.getIdUserLocalStorage()).subscribe({
       next: (response) => {
         this.accountsData = response;
       },

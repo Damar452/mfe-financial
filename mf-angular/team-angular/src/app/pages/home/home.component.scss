@@ -1,7 +1,7 @@
 .sidebar {
   width: 260px;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: var(--sidebar-bg-color);
   transition: all 0.3s;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .sidebar .nav-link:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--sidebar-hover-bg);
   border-radius: 5px;
 }
 
@@ -21,7 +21,7 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--navbar-border-color);
 }
 
 #content {
@@ -29,7 +29,7 @@
 }
 
 .nav-link.active {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--active-link-bg);
   border-radius: 5px;
 }
 

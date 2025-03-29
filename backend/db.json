@@ -69,82 +69,12 @@
       "id": 1007
     },
     {
-      "accountNumber": "ACC-001-0001",
+      "userId": 1,
+      "accountNumber": "3543534",
       "accountType": "SAVINGS",
-      "balance": 1500.75,
+      "balance": 5000,
+      "createdAt": "2025-03-29T00:16:58.989Z",
       "id": 1008
-    },
-    {
-      "accountNumber": "ACC-001-0001",
-      "accountType": "SAVINGS",
-      "balance": 1500.75,
-      "id": 1009
-    },
-    {
-      "accountNumber": "ACC-001-0001",
-      "accountType": "SAVINGS",
-      "balance": 1500.75,
-      "id": 1010
-    },
-    {
-      "accountNumber": "ACC-001-0001",
-      "accountType": "SAVINGS",
-      "balance": 1500.75,
-      "id": 1011
-    },
-    {
-      "accountNumber": "ACC-001-0003",
-      "accountType": "SAVINGS",
-      "balance": 200000,
-      "id": 1012
-    },
-    {
-      "accountNumber": "ACC-002-0001",
-      "accountType": "SAVINGS",
-      "balance": 980.25,
-      "id": 1013
-    },
-    {
-      "accountNumber": "ACC-002-0001",
-      "accountType": "SAVINGS",
-      "balance": 980.25,
-      "id": 1014
-    },
-    {
-      "accountNumber": "ACC-001-0004",
-      "accountType": "SAVINGS",
-      "balance": 12345,
-      "id": 1015
-    },
-    {
-      "accountNumber": "ACC-001-0005",
-      "accountType": "SAVINGS",
-      "balance": 5600,
-      "id": 1016
-    },
-    {
-      "accountNumber": "ACC-001-0006",
-      "accountType": "CREDIT",
-      "balance": 3000,
-      "id": 1017
-    },
-    {
-      "accountNumber": "getAccounts",
-      "accountType": "SAVINGS",
-      "balance": 4900,
-      "id": 1018
-    },
-    {
-      "accountNumber": "ACC-001-0007",
-      "accountType": "SAVINGS",
-      "balance": 2133,
-      "id": 1019
-    },
-    {
-      "accountNumber": "ACC-001-0008",
-      "accountType": "CHECKING",
-      "balance": 60000,
-      "id": 1020
     }
   ],
   "transactions": [

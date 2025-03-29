@@ -25,10 +25,21 @@
   <div id="content" class="flex-grow-1">
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm w-100 px-3">
       <span class="navbar-brand fw-bold">Financial App</span>
-      <button class="btn btn-outline-primary ms-auto" (click)="logout()">
-        <i class="bi bi-box-arrow-right"></i> Logout
-      </button>
+
+      <div class="dropdown ms-auto">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle"></i> {{ userName }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li>
+            <button class="dropdown-item" (click)="logout()">
+              <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+            </button>
+          </li>
+        </ul>
+      </div>
     </nav>
+
     <div class="container mt-4 px-4">
       <router-outlet></router-outlet>
     </div>
