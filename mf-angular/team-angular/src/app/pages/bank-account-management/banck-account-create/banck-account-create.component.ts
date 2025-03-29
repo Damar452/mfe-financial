@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountResponse } from 'src/app/core/interfaces/account.interface';
 import { AccountsService } from 'src/app/core/services/accounts.service';
+import { LoggedUserService } from 'src/app/core/services/utils/logged-user.service';
 
 @Component({
   selector: 'app-banck-account-create',
@@ -17,6 +18,7 @@ export class BanckAccountCreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private accountsServices: AccountsService,
+    private loggedUserService: LoggedUserService
   ) {}
 
   ngOnChanges(change: any) {
@@ -28,15 +30,10 @@ export class BanckAccountCreateComponent implements OnInit {
     this.buildForm();
   }
 
-  getIdUserLocalStorage() {
-    const userData = localStorage.getItem("USER_DATA");
-    return userData ? JSON.parse(userData).id : null;
-  }
-
   private buildForm(): void {
     this.accountForm = this.fb.group({
       userId: [
-        this.selectedAccount?.userId || this.getIdUserLocalStorage(),
+        this.selectedAccount?.userId || this.loggedUserService.getLoggedUser()!.id,
         Validators.required,
       ],
       accountNumber: [
