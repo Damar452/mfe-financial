@@ -67,6 +67,14 @@
       "accountType": "CHECKING",
       "balance": 10000,
       "id": 1007
+    },
+    {
+      "userId": 1,
+      "accountNumber": "3543534",
+      "accountType": "SAVINGS",
+      "balance": 5000,
+      "createdAt": "2025-03-29T00:16:58.989Z",
+      "id": 1008
     }
   ],
   "transactions": [

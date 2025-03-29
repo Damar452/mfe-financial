@@ -1,25 +1,45 @@
 <div class="d-flex">
   <nav id="sidebar" class="sidebar bg-light">
     <div class="p-3">
-      <!-- <img src="assets/logo.png" alt="Logo" class="logo mb-3"> -->
-      <ul class="nav flex-column">
+      <h5 class="text-center fw-bold">Menú</h5>
+      <ul class="nav flex-column mt-4">
         <li class="nav-item">
-          <a class="nav-link  active" href="#">
-            <i class="bi bi-person-circle me-2"></i> Cuentas
+          <a class="nav-link text-dark" routerLink="/dashboard" routerLinkActive="active">
+            <i class="bi bi-person-circle me-2"></i> Dashboard
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">
-            <i class="bi bi-gear me-2"></i> Configuración
+          <a class="nav-link text-dark" routerLink="/bank-account-management" routerLinkActive="active">
+            <i class="bi bi-gear me-2"></i> Cuentas Asociadas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" routerLink="/transaction-history" routerLinkActive="active">
+            <i class="bi bi-gear me-2"></i> Historial de Transacciones
           </a>
         </li>
       </ul>
     </div>
   </nav>
+
   <div id="content" class="flex-grow-1">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
-      <span class="navbar-brand">M</span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm w-100 px-3">
+      <span class="navbar-brand fw-bold">Financial App</span>
+
+      <div class="dropdown ms-auto">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle"></i> {{ userName }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li>
+            <button class="dropdown-item" (click)="logout()">
+              <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+            </button>
+          </li>
+        </ul>
+      </div>
     </nav>
+
     <div class="container mt-4 px-4">
       <router-outlet></router-outlet>
     </div>

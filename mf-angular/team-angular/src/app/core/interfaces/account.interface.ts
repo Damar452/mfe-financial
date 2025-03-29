@@ -6,3 +6,9 @@ export interface AccountResponse {
   balance: number;
   createdAt: string;
 }
+
+export interface UsersAccounts {
+  fullName: string;
+  accountNumber: string;
+  balance: number;
+}

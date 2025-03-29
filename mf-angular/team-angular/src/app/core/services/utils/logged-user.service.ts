@@ -10,7 +10,7 @@ export class LoggedUserService {
 
   constructor() { }
 
-  public saveLoggedUser(data: LoginResponse) {
+  public saveLoggedUser(data: LoginResponse): void {
     window.localStorage.setItem(this.storageKey, JSON.stringify(data));
   }
 
@@ -19,7 +19,7 @@ export class LoggedUserService {
     return data ? JSON.parse(data) : null;
   }
 
-  public removeLoggedUser() {
+  public removeLoggedUser(): void {
     window.localStorage.removeItem(this.storageKey);
   }
 }

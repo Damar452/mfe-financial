@@ -1,34 +1,49 @@
 <div>
-  <h1>Cuentas Asociadas</h1>
+  <h2 class="mb-2">Cuentas Asociadas</h2>
   <div class="card py-3 px-4">
     <div class="d-flex justify-content-end">
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAccountModal">Agregar Cuenta</button>
+      <button
+        (click)="openCreateModal()"
+        class="btn btn-primary mb-3"
+        data-bs-toggle="modal"
+        data-bs-target="#createAccountModal"
+      >
+        Agregar Cuenta
+      </button>
     </div>
 
     <div class="table-responsive">
       <table class="table table-hover">
-    <thead >
-      <tr>
-        <th>N° Cuenta</th>
-        <th>Tipo de cuenta</th>
-        <th>Balance</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let account of accountsData">
-        <td>{{ account.accountNumber  }}</td>
-        <td>{{ account.accountType }}</td>
-        <td>{{ account.balance | currency }}</td>
-        <td>
-          <button class="btn btn-primary btn-sm me-2">Ver</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <thead class="table-light">
+          <tr>
+            <th>N° Cuenta</th>
+            <th>Tipo de cuenta</th>
+            <th>Balance</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let account of accountsData">
+            <td>{{ account.accountNumber }}</td>
+            <td>{{ account.accountType }}</td>
+            <td>{{ account.balance | currency }}</td>
+            <td>
+              <button
+                (click)="viewAcount(account)"
+                class="btn btn-outline-primary btn-sm me-2"
+                data-bs-toggle="modal"
+                data-bs-target="#createAccountModal"
+              >
+                Ver
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
   </div>
-
 </div>
-<app-banck-account-create></app-banck-account-create>
+
+<app-banck-account-create
+  [selectedAccount]="selectedAccount"
+></app-banck-account-create>

@@ -9,9 +9,13 @@ import { mountRootParcel } from 'single-spa';
 export class TransactionHistoryComponent implements OnInit, OnDestroy {
 
   @ViewChild('mfReactContainer', { static: true }) containerRef!: ElementRef;
-  reactParcel: any;
+  public reactParcel: any;
 
   async ngOnInit() {
+    await this.setMfeComponent();
+  }
+
+  private async setMfeComponent(): Promise<void> {
     const reactApp = await (window as any).System.import('@financialapp/mf-react');
 
     if (this.containerRef?.nativeElement) {
