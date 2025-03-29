@@ -92,9 +92,9 @@
                     <span class="badge bg-light text-dark">{{ userAccount.accountNumber | uppercase }}</span>
                   </td>
                   <td class="text-end fw-bold"
-                      [class.text-success]="userAccount.balance > 5000"
-                      [class.text-warning]="userAccount.balance <= 5000 && userAccount.balance > 1000"
-                      [class.text-danger]="userAccount.balance <= 1000">
+                      [class.text-success]="userAccount.balance > highAmount"
+                      [class.text-warning]="userAccount.balance <= highAmount && userAccount.balance > lowAmount"
+                      [class.text-danger]="userAccount.balance <= lowAmount">
                     {{ userAccount.balance | currency }}
                   </td>
                   <td class="text-center">

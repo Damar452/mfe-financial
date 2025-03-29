@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit {
   public transactions: Transaction[] = [];
   public totalBalance: number = 0;
   public accountSelect: UsersAccounts | null = null;
+  public highAmount = 5000;
+  public lowAmount = 1000;
 
   constructor(
     private userService: UsersService,
