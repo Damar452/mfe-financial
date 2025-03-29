@@ -10,6 +10,10 @@ export class AccountsService {
 
   constructor(private _http: HttpClient) { }
 
+  public getAccountsByUser(userId: number): Observable<any> {
+    return this._http.get<any>(`${environment.API}/accounts?userId=${userId}`);
+  }
+
   public getAccounts(): Observable<any> {
     return this._http.get<any>(`${environment.API}/accounts`);
   }

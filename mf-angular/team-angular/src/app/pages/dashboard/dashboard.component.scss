@@ -1,0 +1,43 @@
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #4185eb 0%, #45d6f3 100%);
+}
+
+/* Avatar Circle */
+.avatar-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* Transaction Icons */
+.transaction-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Stat Icons */
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}

@@ -1,64 +1,133 @@
-<div class="container mt-4">
-  <!-- Título -->
-  <h2 class="mb-3">Dashboard</h2>
-
-  <!-- Saldo Total -->
-  <div class="row">
+<div class="container-fluid py-4">
+  <div class="row mb-4">
     <div class="col-12">
-      <div class="card shadow-sm text-center">
-        <div class="card-header bg-light">Saldo Total</div>
-        <div class="card-body">
-          <h2>{{ saldoTotal | currency }}</h2>
+      <div class="card border-0 bg-gradient-primary text-white shadow rounded-4">
+        <div class="card-body p-4">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <h6 class="text-uppercase mb-2 opacity-8">Saldo Total</h6>
+              <h1 class="display-3 fw-bold mb-2">{{ totalBalance | currency }}</h1>
+            </div>
+            <div class="col-md-4 text-end d-none d-md-block">
+              <i class="bi bi-wallet2 opacity-6" style="font-size: 6rem;"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Últimas Transacciones y Cuentas -->
-  <div class="row mt-4">
-    <!-- Últimas Transacciones -->
-    <div class="col-md-6">
-      <div class="card shadow-sm">
-        <div class="card-header bg-light">Últimas Transacciones</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-between" *ngFor="let transaccion of transacciones">
-            <span>{{ transaccion.descripcion }}</span>
-            <span [class.text-success]="transaccion.monto > 0" [class.text-danger]="transaccion.monto < 0">
-              {{ transaccion.monto | currency }}
-            </span>
-          </li>
-        </ul>
+  <!-- Dashboard Main Content -->
+  <div class="row g-4">
+    <!-- Latest Transactions Card -->
+    <div class="col-lg-5">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center py-3">
+          <h5 class="mb-0">
+            <i class="bi bi-arrow-left-right me-2 text-primary"></i>Últimas Transacciones
+          </h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="list-group list-group-flush">
+            <div class="list-group-item border-0 py-3 px-4" *ngFor="let transaction of transactions | slice:0:3">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="d-flex align-items-center">
+                    <div class="transaction-icon me-3 rounded-circle
+                         {{ transaction.amount > 0 ? 'bg-success-subtle' : 'bg-danger-subtle' }} p-2">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><g fill="currentColor"><path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8a4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0a5 5 0 0 1 10 0"/><path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207c0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158c0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522c0-.294.216-.514.572-.578v1.1zm.432.746c.449.104.655.272.655.569c0 .339-.257.571-.709.614v-1.195z"/><path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083q.088-.517.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z"/><path d="M9.998 5.083L10 5a2 2 0 1 0-3.132 1.65a6 6 0 0 1 3.13-1.567"/></g></svg>
+                    </div>
+                    <div>
+                      <h6 class="mb-0">{{ transaction.description }}</h6>
+                      <small class="text-muted">{{ transaction.timestamp | date:'short' }}</small>
+                    </div>
+                  </div>
+                </div>
+                <span class="fw-bold fs-5 {{ transaction.amount > 0 ? 'text-success' : 'text-danger' }}">
+                  {{ transaction.amount | currency }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-center py-3">
+          <a [routerLink]="['/transaction-history']" class="text-decoration-none">Ver todas las transacciones <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
       </div>
     </div>
 
-    <!-- Tabla de Cuentas -->
-    <div class="col-md-6">
-      <div class="card shadow-sm">
-        <div class="card-header bg-light">Cuentas</div>
-        <div class="card-body">
-          <table class="table table-striped text-center">
-            <thead class="table-light">
-              <tr>
-                <th>Cuenta</th>
-                <th>Saldo</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let cuenta of cuentas">
-                <td>{{ cuenta.nombre }}</td>
-                <td>{{ cuenta.saldo | currency }}</td>
-                <td>
-                  <button class="btn btn-primary btn-sm" (click)="verCuenta(cuenta)">Ver</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <!-- Accounts Card -->
+    <div class="col-lg-7">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center py-3">
+          <h5 class="mb-0">
+            <i class="bi bi-credit-card-2-front me-2 text-primary"></i>Mis Cuentas
+          </h5>
+          <div>
+            <button class="btn btn-sm btn-primary rounded-pill" [routerLink]="['/bank-account-management']">
+              <i class="bi bi-plus-lg me-1"></i>Añadir Cuenta
+            </button>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th class="ps-4">Nombre</th>
+                  <th>Cuenta</th>
+                  <th class="text-end">Saldo</th>
+                  <th class="text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let userAccount of usersAccounts"
+                    [class.table-active]="accountSelect && accountSelect.accountNumber === userAccount.accountNumber">
+                  <td class="ps-4">
+                    <div class="d-flex align-items-center">
+                      <div class="avatar-circle bg-primary-subtle text-primary me-2">
+                        {{ userAccount.fullName.charAt(0) }}
+                      </div>
+                      <span>{{ userAccount.fullName | titlecase }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge bg-light text-dark">{{ userAccount.accountNumber | uppercase }}</span>
+                  </td>
+                  <td class="text-end fw-bold"
+                      [class.text-success]="userAccount.balance > 5000"
+                      [class.text-warning]="userAccount.balance <= 5000 && userAccount.balance > 1000"
+                      [class.text-danger]="userAccount.balance <= 1000">
+                    {{ userAccount.balance | currency }}
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3"
+                            (click)="showSummaryAccount(userAccount)">
+                      <i class="bi bi-eye me-1"></i>Ver
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-          <!-- Información de la cuenta seleccionada -->
-          <div *ngIf="cuentaSeleccionada" class="alert alert-info mt-3">
-            <strong>Cuenta seleccionada:</strong> {{ cuentaSeleccionada.nombre }} <br>
-            <strong>Saldo:</strong> {{ cuentaSeleccionada.saldo | currency }}
+        <!-- Selected Account Summary -->
+        <div *ngIf="accountSelect" class="card-footer bg-light py-3 px-4 border-0 rounded-bottom-4">
+          <div class="row align-items-center">
+            <div class="col-md-1 text-center">
+              <div class="avatar-circle bg-primary text-white">
+                {{ accountSelect.fullName.charAt(0) }}
+              </div>
+            </div>
+            <div class="col-md-7">
+              <h6 class="mb-0">{{ accountSelect.fullName }}</h6>
+              <small class="text-muted">{{ accountSelect.accountNumber }}</small>
+            </div>
+            <div class="col-md-4 text-end">
+              <div class="fw-bold fs-5">{{ accountSelect.balance | currency }}</div>
+              <small class="text-success"><i class="bi bi-graph-up-arrow me-1"></i>Activa</small>
+            </div>
           </div>
         </div>
       </div>
