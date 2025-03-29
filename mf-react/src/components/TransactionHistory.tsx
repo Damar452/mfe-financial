@@ -67,7 +67,7 @@ export default function TransactionHistory() {
       title: "Acciones",
       key: "actions",
       render: (_: any, record: any) => (
-        <Button type="primary" onClick={() => openDetailModal(record)}>
+        <Button type="default" onClick={() => openDetailModal(record)}>
           Ver Detalles
         </Button>
       ),
@@ -76,23 +76,26 @@ export default function TransactionHistory() {
 
   return (
     <div style={{ padding: 20 }}>
-      <Button type="primary" onClick={() => setTransferModalOpen(true)} style={{ marginBottom: 16 }}>
-        Nueva Transferencia
-      </Button>
 
       {loading ? (
         <Spin size="large" />
       ) : (
         <>
-          <Select
-            placeholder="Filtrar por tipo"
-            style={{ width: 200, marginBottom: 16 }}
-            onChange={handleTypeFilter}
-            allowClear
-          >
-            <Option value="Ingreso">Ingreso</Option>
-            <Option value="Gasto">Gasto</Option>
-          </Select>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+            <Select
+              placeholder="Filtrar por tipo"
+              style={{ width: 200 }}
+              onChange={handleTypeFilter}
+              allowClear
+            >
+              <Option value="Ingreso">Ingreso</Option>
+              <Option value="Gasto">Gasto</Option>
+            </Select>
+
+            <Button type="primary" onClick={() => setTransferModalOpen(true)}>
+              Nueva Transferencia
+            </Button>
+          </div>
 
           <Table columns={columns} dataSource={filteredTransactions} rowKey="id" />
         </>
