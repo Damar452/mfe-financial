@@ -88,7 +88,7 @@ npm run start:react  # Inicia el micro frontend React
   
 ### 🔹 Puertos por cada MFE
 - **Backend:** [http://localhost:3000](http://localhost:3000)
-- **Root:** [http://localhost:9000](http://localhost:9000)
+- **Root:** [http://localhost:9000](http://localhost:9000) <= **Puerto de despliegue de la app**
 - **Angular:** [http://localhost:4200](http://localhost:4200)
 - **React:** [http://localhost:8080](http://localhost:8080)
 
@@ -116,7 +116,7 @@ npm run start:react  # Inicia el micro frontend React
 
 ## 📄 Notas adicionales
 - Este proyecto usa **Single SPA** para la integración de micro frontends.
-- Asegúrate de que todos los servicios estén corriendo correctamente antes de probar la aplicación en el navegador.
+- Asegúrate de que todos los servicios estén corriendo correctamente antes de probar la aplicación en el navegador. si todo sale bien ve a esta url: [http://localhost:9000](http://localhost:9000) 
 
 
 📌 **Datos de prueba para iniciar sesión:** 
